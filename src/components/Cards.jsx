@@ -50,41 +50,60 @@ export function ProjectCard({ project, index = 0 }) {
       whileHover={{ y: -10 }}
       className="group overflow-hidden rounded-[2rem] border border-border bg-white shadow-[0_22px_80px_rgba(7,27,59,0.07)]"
     >
-      <div className={`relative h-64 bg-gradient-to-br ${project.accent} p-5`}>
+      <div className={`relative h-[310px] bg-gradient-to-br ${project.accent} p-5 md:h-[330px]`}>
         <div className="absolute inset-0 mockup-grid opacity-80" />
-        <div className="relative mx-auto h-full max-w-[360px] rounded-[1.5rem] border border-white/70 bg-white/82 p-4 shadow-2xl backdrop-blur">
+
+        <div className="relative mx-auto h-full max-w-[390px] rounded-[1.6rem] border border-white/70 bg-white/85 p-5 shadow-2xl backdrop-blur">
           <div className="mb-4 flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-[#ff6b6b]" />
             <span className="h-3 w-3 rounded-full bg-[#ffd166]" />
             <span className="h-3 w-3 rounded-full bg-[#06d6a0]" />
           </div>
+
           <div className="rounded-2xl premium-gradient p-5 text-white">
-            <p className="text-xs uppercase tracking-[0.15em] text-white/60">{project.type}</p>
-            <p className="mt-8 text-2xl font-semibold">{project.title}</p>
+            <p className="text-xs uppercase tracking-[0.18em] text-white/65">
+              {project.type}
+            </p>
+            <p className="mt-8 text-2xl font-semibold leading-tight">
+              {project.title}
+            </p>
           </div>
-          <div className="mt-4 grid grid-cols-3 gap-3">
+
+          <div className="mt-5 grid grid-cols-3 gap-3">
             <span className="h-16 rounded-2xl bg-sky" />
             <span className="h-16 rounded-2xl bg-white shadow-sm" />
             <span className="h-16 rounded-2xl bg-sky" />
           </div>
         </div>
       </div>
-      <div className="p-6">
+
+      <div className="p-7 md:p-8">
         <p className="text-sm font-semibold text-royal">{project.type}</p>
-        <h3 className="mt-2 text-2xl font-semibold tracking-tight text-navy">{project.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-muted">{project.description}</p>
-        <div className="mt-5 flex flex-wrap gap-2">
+
+        <h3 className="mt-3 text-2xl font-semibold tracking-tight text-navy">
+          {project.title}
+        </h3>
+
+        <p className="mt-4 text-sm leading-7 text-muted">
+          {project.description}
+        </p>
+
+        <div className="mt-7 flex flex-wrap gap-2">
           {project.tags.map((tag) => (
-            <span key={tag} className="rounded-full border border-border bg-sky/60 px-3 py-1 text-xs font-semibold text-royal">
+            <span
+              key={tag}
+              className="rounded-full border border-border bg-sky/60 px-3 py-1 text-xs font-semibold text-royal"
+            >
               {tag}
             </span>
           ))}
         </div>
+
         <a
           href={whatsappLink}
           target="_blank"
           rel="noreferrer"
-          className="whatsapp-cta mt-6 inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-sm font-semibold shadow-[0_16px_38px_rgba(15,61,145,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(15,61,145,0.32)]"
+          className="whatsapp-cta mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold shadow-[0_16px_38px_rgba(15,61,145,0.22)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(15,61,145,0.32)]"
         >
           Discuss Similar Project <ArrowRight size={16} className="transition group-hover:translate-x-1" />
         </a>
