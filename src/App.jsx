@@ -13,6 +13,10 @@ import Work from './pages/Work.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
 
+/* BLOG PAGES */
+import Blog from './pages/Blog.jsx';
+import BlogPost from './pages/BlogPost.jsx';
+
 function PageShell({ children }) {
   return (
     <motion.main
@@ -88,6 +92,26 @@ export default function App() {
             element={
               <PageShell>
                 <Contact />
+              </PageShell>
+            }
+          />
+
+          {/* BLOG ROUTES */}
+
+          <Route
+            path="/blog"
+            element={
+              <PageShell>
+                <Blog />
+              </PageShell>
+            }
+          />
+
+          <Route
+            path="/blog/:slug"
+            element={
+              <PageShell>
+                <BlogPost />
               </PageShell>
             }
           />
