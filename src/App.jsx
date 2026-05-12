@@ -1,8 +1,12 @@
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Route, Routes, useLocation } from 'react-router-dom';
+
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import IntroLoader from './components/IntroLoader.jsx';
+
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
 import Work from './pages/Work.jsx';
@@ -24,20 +28,72 @@ function PageShell({ children }) {
 
 export default function App() {
   const location = useLocation();
+  const [showIntro, setShowIntro] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowIntro(false);
+    }, 2100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white text-navy antialiased">
+      <IntroLoader show={showIntro} />
+
       <ScrollToTop />
       <Navbar />
+
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageShell><Home /></PageShell>} />
-          <Route path="/services" element={<PageShell><Services /></PageShell>} />
-          <Route path="/work" element={<PageShell><Work /></PageShell>} />
-          <Route path="/about" element={<PageShell><About /></PageShell>} />
-          <Route path="/contact" element={<PageShell><Contact /></PageShell>} />
+          <Route
+            path="/"
+            element={
+              <PageShell>
+                <Home />
+              </PageShell>
+            }
+          />
+
+          <Route
+            path="/services"
+            element={
+              <PageShell>
+                <Services />
+              </PageShell>
+            }
+          />
+
+          <Route
+            path="/work"
+            element={
+              <PageShell>
+                <Work />
+              </PageShell>
+            }
+          />
+
+          <Route
+            path="/about"
+            element={
+              <PageShell>
+                <About />
+              </PageShell>
+            }
+          />
+
+          <Route
+            path="/contact"
+            element={
+              <PageShell>
+                <Contact />
+              </PageShell>
+            }
+          />
         </Routes>
       </AnimatePresence>
+
       <Footer />
     </div>
   );
