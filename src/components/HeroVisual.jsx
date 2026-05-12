@@ -22,8 +22,7 @@ export default function HeroVisual() {
 
   const lowPerformance =
     typeof navigator !== 'undefined' &&
-    ((navigator.hardwareConcurrency &&
-      navigator.hardwareConcurrency <= 4) ||
+    ((navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
       (navigator.deviceMemory && navigator.deviceMemory <= 4));
 
   const mobileLite = isMobile && (lowPerformance || prefersReducedMotion);
@@ -31,23 +30,13 @@ export default function HeroVisual() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const rotateX = useTransform(
-    y,
-    [-160, 160],
-    mobileLite ? [2, -2] : [8, -8]
-  );
-
-  const rotateY = useTransform(
-    x,
-    [-160, 160],
-    mobileLite ? [-2, 2] : [-8, 8]
-  );
+  const rotateX = useTransform(y, [-160, 160], mobileLite ? [2, -2] : [6, -6]);
+  const rotateY = useTransform(x, [-160, 160], mobileLite ? [-2, 2] : [-6, 6]);
 
   function handleMove(event) {
     if (mobileLite) return;
 
     const rect = event.currentTarget.getBoundingClientRect();
-
     x.set(event.clientX - rect.left - rect.width / 2);
     y.set(event.clientY - rect.top - rect.height / 2);
   }
@@ -64,70 +53,33 @@ export default function HeroVisual() {
         rotateY,
         transformStyle: 'preserve-3d',
       }}
-      className="relative mx-auto h-[470px] w-full max-w-[560px] md:h-[560px]"
+      className="relative mx-auto h-[470px] w-full max-w-[560px] md:ml-auto md:h-[560px] md:max-w-[620px]"
     >
-      {/* PREMIUM BACKGROUND BLOBS */}
-
       <motion.div
         animate={
           mobileLite
             ? { opacity: [0.72, 0.85, 0.72] }
-            : {
-                scale: [1, 1.08, 1],
-                rotate: [0, 8, 0],
-              }
+            : { scale: [1, 1.08, 1], rotate: [0, 8, 0] }
         }
-        transition={{
-          duration: mobileLite ? 5 : 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="animated-blob absolute left-4 top-0 h-52 w-52 rounded-full opacity-75 md:h-64 md:w-64"
+        transition={{ duration: mobileLite ? 5 : 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="animated-blob absolute left-4 top-0 h-52 w-52 rounded-full opacity-75 md:left-12 md:h-64 md:w-64"
       />
 
       <motion.div
         animate={
           mobileLite
             ? { opacity: [0.68, 0.8, 0.68] }
-            : {
-                y: [0, -16, 0],
-                x: [0, 14, 0],
-              }
+            : { y: [0, -16, 0], x: [0, 14, 0] }
         }
-        transition={{
-          duration: mobileLite ? 5.5 : 7,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="animated-blob absolute bottom-12 right-2 h-64 w-64 rounded-full opacity-70 md:h-80 md:w-80"
+        transition={{ duration: mobileLite ? 5.5 : 7, repeat: Infinity, ease: 'easeInOut' }}
+        className="animated-blob absolute bottom-12 right-2 h-64 w-64 rounded-full opacity-70 md:right-0 md:h-80 md:w-80"
       />
 
-      {/* MAIN DASHBOARD */}
-
       <motion.div
-        animate={
-          mobileLite
-            ? { y: [0, -4, 0] }
-            : { y: [0, -12, 0] }
-        }
-        transition={{
-          duration: mobileLite ? 4.5 : 6,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        whileHover={
-          mobileLite
-            ? {}
-            : {
-                y: -10,
-                scale: 1.015,
-                transition: {
-                  duration: 0.18,
-                  ease: 'easeOut',
-                },
-              }
-        }
-        className="mockup-grid glass-card absolute left-1 top-14 h-[290px] w-[88%] rounded-[2rem] p-4 shadow-[0_28px_90px_rgba(7,27,59,0.14)] md:left-0 md:top-20 md:h-72"
+        animate={mobileLite ? { y: [0, -4, 0] } : { y: [0, -12, 0] }}
+        transition={{ duration: mobileLite ? 4.5 : 6, repeat: Infinity, ease: 'easeInOut' }}
+        whileHover={mobileLite ? {} : { y: -10, scale: 1.015, transition: { duration: 0.18, ease: 'easeOut' } }}
+        className="mockup-grid glass-card absolute left-1 top-14 h-[290px] w-[88%] rounded-[2rem] p-4 shadow-[0_28px_90px_rgba(7,27,59,0.14)] md:left-12 md:top-20 md:h-72 md:w-[74%]"
       >
         <div className="flex items-center gap-2 border-b border-border pb-3">
           <span className="h-3 w-3 rounded-full bg-[#ff6b6b]" />
@@ -153,34 +105,17 @@ export default function HeroVisual() {
             </div>
 
             <motion.div
-              whileHover={
-                mobileLite
-                  ? {}
-                  : {
-                      scale: 1.03,
-                    }
-              }
+              whileHover={mobileLite ? {} : { scale: 1.03 }}
               className="mt-8 rounded-2xl premium-gradient p-4 text-white"
             >
-              <p className="text-xs text-white/70">
-                Qualified leads
-              </p>
-
-              <p className="mt-1 text-3xl font-semibold">
-                +48%
-              </p>
+              <p className="text-xs text-white/70">Qualified leads</p>
+              <p className="mt-1 text-3xl font-semibold">+48%</p>
             </motion.div>
           </div>
 
           <div className="grid gap-4">
             <motion.div
-              whileHover={
-                mobileLite
-                  ? {}
-                  : {
-                      y: -5,
-                    }
-              }
+              whileHover={mobileLite ? {} : { y: -5 }}
               className="rounded-3xl bg-white p-4 shadow-sm"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
@@ -194,13 +129,7 @@ export default function HeroVisual() {
             </motion.div>
 
             <motion.div
-              whileHover={
-                mobileLite
-                  ? {}
-                  : {
-                      y: -5,
-                    }
-              }
+              whileHover={mobileLite ? {} : { y: -5 }}
               className="rounded-3xl bg-white p-4 shadow-sm"
             >
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
@@ -216,40 +145,17 @@ export default function HeroVisual() {
         </div>
       </motion.div>
 
-      {/* PHONE MOCKUP */}
-
       <motion.div
-        animate={
-          mobileLite
-            ? { y: [0, 5, 0] }
-            : { y: [0, 16, 0] }
-        }
-        transition={{
-          duration: mobileLite ? 5 : 7.5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        whileHover={
-          mobileLite
-            ? {}
-            : {
-                y: -8,
-                scale: 1.03,
-              }
-        }
-        className="glass-card absolute bottom-0 right-0 h-[320px] w-[165px] rounded-[2rem] border-navy/10 bg-navy p-2 shadow-[0_30px_100px_rgba(7,27,59,0.28)] md:right-10 md:h-[340px] md:w-[175px]"
+        animate={mobileLite ? { y: [0, 5, 0] } : { y: [0, 16, 0] }}
+        transition={{ duration: mobileLite ? 5 : 7.5, repeat: Infinity, ease: 'easeInOut' }}
+        whileHover={mobileLite ? {} : { y: -8, scale: 1.03 }}
+        className="glass-card absolute bottom-0 right-0 h-[320px] w-[165px] rounded-[2rem] border-navy/10 bg-navy p-2 shadow-[0_30px_100px_rgba(7,27,59,0.28)] md:right-2 md:h-[340px] md:w-[175px]"
       >
         <div className="h-full overflow-hidden rounded-[1.55rem] bg-white">
           <div className="bg-navy px-4 py-4 text-white">
             <div className="mx-auto mb-3 h-4 w-16 rounded-full bg-white/15" />
-
-            <p className="text-xs font-semibold">
-              Caslio Bot
-            </p>
-
-            <p className="text-[10px] text-white/58">
-              Solutions to growth
-            </p>
+            <p className="text-xs font-semibold">Caslio Bot</p>
+            <p className="text-[10px] text-white/58">Solutions to growth</p>
           </div>
 
           <div className="space-y-3 p-3 text-[10px]">
@@ -261,28 +167,18 @@ export default function HeroVisual() {
               Hello. We can help with a premium website and WhatsApp system.
             </div>
 
-            {['Website', 'Automation', 'Google Growth'].map(
-              (item) => (
-                <motion.div
-                  key={item}
-                  whileHover={
-                    mobileLite
-                      ? {}
-                      : {
-                          scale: 1.04,
-                        }
-                  }
-                  className="rounded-full border border-border bg-white px-3 py-2 text-center font-semibold text-royal"
-                >
-                  {item}
-                </motion.div>
-              )
-            )}
+            {['Website', 'Automation', 'Google Growth'].map((item) => (
+              <motion.div
+                key={item}
+                whileHover={mobileLite ? {} : { scale: 1.04 }}
+                className="rounded-full border border-border bg-white px-3 py-2 text-center font-semibold text-royal"
+              >
+                {item}
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
-
-      {/* FLOATING BADGES */}
 
       <motion.div
         animate={
@@ -290,12 +186,8 @@ export default function HeroVisual() {
             ? { y: [0, -4, 0] }
             : { y: [0, -16, 0], rotate: [0, -2, 0] }
         }
-        transition={{
-          duration: mobileLite ? 4.5 : 6.8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="glass-card absolute left-0 top-[330px] z-10 hidden rounded-3xl p-4 shadow-xl sm:block"
+        transition={{ duration: mobileLite ? 4.5 : 6.8, repeat: Infinity, ease: 'easeInOut' }}
+        className="glass-card absolute left-0 top-[330px] z-10 hidden rounded-3xl p-4 shadow-xl sm:block md:left-8"
       >
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky text-royal">
@@ -303,13 +195,8 @@ export default function HeroVisual() {
           </span>
 
           <div>
-            <p className="text-sm font-semibold text-navy">
-              Premium UI system
-            </p>
-
-            <p className="text-xs text-muted">
-              Brand-ready and responsive
-            </p>
+            <p className="text-sm font-semibold text-navy">Premium UI system</p>
+            <p className="text-xs text-muted">Brand-ready and responsive</p>
           </div>
         </div>
       </motion.div>
@@ -320,12 +207,8 @@ export default function HeroVisual() {
             ? { y: [0, 4, 0] }
             : { y: [0, 14, 0], rotate: [0, 2, 0] }
         }
-        transition={{
-          duration: mobileLite ? 4.5 : 6.2,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-        className="glass-card absolute right-3 top-4 z-10 rounded-3xl p-4 shadow-xl md:right-6 md:top-8"
+        transition={{ duration: mobileLite ? 4.5 : 6.2, repeat: Infinity, ease: 'easeInOut' }}
+        className="glass-card absolute right-3 top-4 z-10 rounded-3xl p-4 shadow-xl md:right-4 md:top-8"
       >
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-navy text-white">
@@ -333,29 +216,17 @@ export default function HeroVisual() {
           </span>
 
           <div>
-            <p className="text-sm font-semibold text-navy">
-              WhatsApp-first leads
-            </p>
-
-            <p className="text-xs text-muted">
-              Instant customer action
-            </p>
+            <p className="text-sm font-semibold text-navy">WhatsApp-first leads</p>
+            <p className="text-xs text-muted">Instant customer action</p>
           </div>
         </div>
       </motion.div>
 
       {!mobileLite && (
         <motion.div
-          animate={{
-            x: [0, 12, 0],
-            y: [0, -10, 0],
-          }}
-          transition={{
-            duration: 5.5,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute left-10 top-10 text-royal"
+          animate={{ x: [0, 12, 0], y: [0, -10, 0] }}
+          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute left-10 top-10 text-royal md:left-16"
         >
           <MousePointer2 size={30} />
         </motion.div>
