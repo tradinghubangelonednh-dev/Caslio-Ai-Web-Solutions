@@ -9,6 +9,7 @@ import IntroLoader from './components/IntroLoader.jsx';
 
 import Home from './pages/Home.jsx';
 import Services from './pages/Services.jsx';
+import Solutions from './pages/Solutions.jsx';
 import Work from './pages/Work.jsx';
 import About from './pages/About.jsx';
 import Contact from './pages/Contact.jsx';
@@ -65,6 +66,15 @@ export default function App() {
             element={
               <PageShell>
                 <Services />
+              </PageShell>
+            }
+          />
+
+          <Route
+            path="/solutions"
+            element={
+              <PageShell>
+                <Solutions />
               </PageShell>
             }
           />

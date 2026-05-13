@@ -7,6 +7,7 @@ import { WhatsAppButton } from './Button.jsx';
 const links = [
   { name: 'Home', to: '/' },
   { name: 'Services', to: '/services' },
+  { name: 'Solutions', to: '/solutions' },
   { name: 'Work', to: '/work' },
   { name: 'About', to: '/about' },
   { name: 'Contact', to: '/contact' },
@@ -18,9 +19,15 @@ function Logo() {
       <span className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-2xl border border-border bg-white p-1 shadow-[0_10px_30px_rgba(7,27,59,0.08)] sm:h-[52px] sm:w-[52px]">
         <img src="/caslio-logo-symbol.jpeg" alt="Caslio AI & Web Solutions logo" className="h-full w-full object-cover object-center" />
       </span>
+
       <span className="block min-w-0 leading-tight">
-        <span className="block text-xs font-semibold tracking-[0.18em] text-navy sm:text-sm sm:tracking-[0.26em]">CASLIO</span>
-        <span className="block text-[9px] font-medium uppercase tracking-[0.1em] text-muted sm:text-[11px] sm:tracking-[0.14em]">AI & Web Solutions</span>
+        <span className="block text-xs font-semibold tracking-[0.18em] text-navy sm:text-sm sm:tracking-[0.26em]">
+          CASLIO
+        </span>
+
+        <span className="block text-[9px] font-medium uppercase tracking-[0.1em] text-muted sm:text-[11px] sm:tracking-[0.14em]">
+          AI & Web Solutions
+        </span>
       </span>
     </Link>
   );
@@ -50,10 +57,13 @@ export default function Navbar() {
               {({ isActive }) => (
                 <>
                   <span>{link.name}</span>
+
                   <span
                     className={[
                       'pointer-events-none absolute bottom-0 left-1/2 h-[2px] w-[20px] -translate-x-1/2 rounded-full bg-royal transition-all duration-300',
-                      isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-50 group-hover:opacity-60 group-hover:scale-x-75',
+                      isActive
+                        ? 'opacity-100 scale-x-100'
+                        : 'opacity-0 scale-x-50 group-hover:opacity-60 group-hover:scale-x-75',
                     ].join(' ')}
                   />
                 </>
@@ -91,12 +101,15 @@ export default function Navbar() {
                   to={link.to}
                   onClick={() => setOpen(false)}
                   className={({ isActive }) =>
-                    `rounded-full px-4 py-3 text-sm font-semibold ${isActive ? 'bg-sky text-royal' : 'text-muted'}`
+                    `rounded-full px-4 py-3 text-sm font-semibold ${
+                      isActive ? 'bg-sky text-royal' : 'text-muted'
+                    }`
                   }
                 >
                   {link.name}
                 </NavLink>
               ))}
+
               <WhatsAppButton className="mt-2 w-full" />
             </div>
           </motion.div>
