@@ -6,6 +6,7 @@ import { WhatsAppButton } from './Button.jsx';
 const links = [
   ['Home', '/'],
   ['Services', '/services'],
+  ['Solutions', '/solutions'],
   ['Work', '/work'],
   ['About', '/about'],
   ['Contact', '/contact'],

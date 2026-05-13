@@ -1,4 +1,6 @@
 import { PageHero, ProjectCard } from '../components/Cards.jsx';
+import ClientBrandTicker from '../components/ClientBrandTicker.jsx';
+import StatsCounterSection from '../components/StatsCounterSection.jsx';
 import { projects } from '../data/siteData.js';
 
 export default function Work() {
@@ -21,6 +23,10 @@ export default function Work() {
           ))}
         </div>
       </section>
+
+      <StatsCounterSection />
+
+      <ClientBrandTicker />
     </>
   );
 }

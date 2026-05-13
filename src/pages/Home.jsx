@@ -5,6 +5,7 @@ import HeroVisual from '../components/HeroVisual.jsx';
 import { SecondaryLink, WhatsAppButton } from '../components/Button.jsx';
 import { ProjectCard, ServiceCard } from '../components/Cards.jsx';
 import { Reveal, SectionIntro } from '../components/Section.jsx';
+import StatsCounterSection from '../components/StatsCounterSection.jsx';
 import { deliverables, projects, services, testimonials, trustStrip, whyCaslio } from '../data/siteData.js';
 
 export default function Home() {
@@ -52,6 +53,8 @@ export default function Home() {
           <HeroVisual />
         </div>
       </section>
+
+      <StatsCounterSection />
 
       <section className="border-y border-border bg-white/70 py-5">
         <div className="container-premium grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
