@@ -20,6 +20,36 @@ function createWhatsAppLink(packageName) {
   )}`;
 }
 
+function trackSolutionClick(solution) {
+  if (typeof window === 'undefined') return;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'solution_whatsapp_click', {
+      solution_name: solution.title,
+      solution_price: solution.price,
+      page_path: window.location.pathname,
+    });
+  }
+
+  if (typeof window.clarity === 'function') {
+    window.clarity('event', `solution_${solution.title}`);
+  }
+}
+
+function trackCustomRecommendation() {
+  if (typeof window === 'undefined') return;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'custom_recommendation_click', {
+      page_path: window.location.pathname,
+    });
+  }
+
+  if (typeof window.clarity === 'function') {
+    window.clarity('event', 'custom_recommendation_click');
+  }
+}
+
 const solutions = [
   {
     title: 'Website Development',
@@ -272,6 +302,7 @@ export default function Solutions() {
                     href={createWhatsAppLink(solution.title)}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => trackSolutionClick(solution)}
                     whileHover={{ y: -3, scale: 1.025 }}
                     whileTap={{ scale: 0.97 }}
                     transition={{ duration: 0.12, ease: 'easeOut' }}
@@ -306,6 +337,7 @@ export default function Solutions() {
             href={createWhatsAppLink('Custom Business Solution')}
             target="_blank"
             rel="noreferrer"
+            onClick={trackCustomRecommendation}
             whileHover={{ y: -3, scale: 1.025 }}
             whileTap={{ scale: 0.97 }}
             transition={{ duration: 0.12, ease: 'easeOut' }}
